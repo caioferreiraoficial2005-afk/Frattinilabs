@@ -208,7 +208,8 @@ details p{margin-top:12px;color:var(--cinza);max-width:640px}
   .topo .btn span{display:none}
   .marca span{font-size:20px}
   .hero .gigante{top:16vh;font-size:22vw}
-  .hero .arara{width:min(92vw,58vh)}
+  /* a cabeça fica sempre abaixo do "Labs", mesmo em telas baixas (navegador do Instagram) */
+  .hero .arara{width:min(92vw,58vh,calc((86vh - 24vw - 60px) / 1.61))}
   .hero .labs{right:6vw;top:calc(16vh + 24vw)}
   .hero .info{bottom:4vh;right:var(--gutter);max-width:none}
   .hero .info p{background:rgba(18,11,7,.82);padding:14px 16px;border-radius:16px}
