@@ -472,11 +472,12 @@ window.addEventListener("load",()=>{
 
   // abertura: entrada
   const tl=gsap.timeline({defaults:{ease:"power4.out"}});
-  tl.from(".hero .gigante span",{yPercent:110,opacity:0,duration:1.1,stagger:.05})
-    .from(".hero .arara",{yPercent:30,scale:.85,opacity:0,duration:1.2},"-=.9")
-    .to(".hero .labs",{clipPath:"inset(0 0% 0 0)",duration:.9,ease:"steps(9)"},"-=.3")
-    .from(".hero .info>*",{y:30,opacity:0,duration:.8,stagger:.1},"-=.6")
-    .from(".topo",{y:-30,opacity:0,duration:.6},"-=.6");
+  // menu e textos entram logo no início; o "Labs" segue pichado depois da arara
+  tl.from(".hero .gigante span",{yPercent:110,opacity:0,duration:1.1,stagger:.05},0)
+    .from(".topo",{y:-20,opacity:0,duration:.5},.1)
+    .from(".hero .info>*",{y:20,opacity:0,duration:.6,stagger:.08},.3)
+    .from(".hero .arara",{yPercent:30,scale:.85,opacity:0,duration:1.2},.55)
+    .to(".hero .labs",{clipPath:"inset(0 0% 0 0)",duration:.9,ease:"steps(9)"},1.45);
 
   // abertura: scroll (a arara vem pra câmera, o nome abre)
   gsap.timeline({scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}})
