@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frattini Labs · Sites que fazem seu cliente comprar</title>
+<meta name="description" content="Sites rápidos, criativos e feitos pra converter. A gente investiga o seu nicho, estuda o mercado e cria um site que faz o seu cliente ficar e comprar. Atendimento pelo WhatsApp, para todo o Brasil.">
+<meta name="theme-color" content="#FA670A">
+<link rel="icon" href="assets/img/arara-icone.webp">
+<link rel="preload" href="assets/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/rubik-spray.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/01-abertura-recorte.webp" as="image">
+<style>
+@font-face{font-family:"Spray";src:url(assets/fonts/rubik-spray.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Bloco";src:url(assets/fonts/archivo-black.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Archivo";src:url(assets/fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+
+/* Layout: seções de tela cheia em cores sólidas, palavra gigante atrás da arara, animação conduzida pelo scroll */
+:root{
+  --laranja:#FA670A; --laranja-claro:#FDA052; --tinta:#120B07; --branco:#FFFFFF; --papel:#F5F1EC;
+  --vermelho:#D71B12; --azul:#1B58CB; --amarelo:#FFCB14; --cinza:#6E625A;
+  --f-spray:"Spray","Bloco",Impact,sans-serif;
+  --f-bloco:"Bloco","Arial Black",Impact,sans-serif;
+  --f-texto:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(20px,5vw,72px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--tinta);color:var(--tinta);font-family:var(--f-texto);font-size:18px;line-height:1.5;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:var(--gutter)}
+.condensado{font-family:var(--f-texto);font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.82;letter-spacing:-.01em}
+.eyebrow{font-weight:800;font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+h2{margin:0;text-wrap:balance}
+p{margin:0}
+
+/* botão WhatsApp */
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--tinta);color:var(--branco);text-decoration:none;font-weight:800;font-size:17px;padding:16px 26px;border-radius:999px;transition:translate .25s ease, rotate .25s ease, background .25s ease}
+.btn:hover{translate:0 -3px;rotate:-1.5deg}
+.btn:focus-visible{outline:3px solid var(--branco);outline-offset:3px}
+.btn svg{width:22px;height:22px;flex:none}
+.btn.claro{background:var(--branco);color:var(--tinta)}
+.btn.laranja{background:var(--laranja);color:var(--branco)}
+
+/* topo */
+.topo{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px var(--gutter);pointer-events:none}
+.topo>*{pointer-events:auto}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--branco);background:rgba(26,20,16,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 16px 5px 5px;border-radius:999px}
+.marca img{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 6px rgba(0,0,0,.25))}
+.marca span{font-family:var(--f-spray);font-size:24px;line-height:1}
+.marca b{font-weight:400;color:var(--laranja)}
+.topo .btn{padding:11px 18px;font-size:15px}
+
+
+/* 1. abertura */
+.hero{position:relative;background:var(--laranja);min-height:100svh;overflow:hidden;color:var(--branco)}
+.hero .gigante{position:absolute;left:50%;top:15vh;transform:translateX(-50%);font-size:clamp(120px,27vw,420px);color:var(--branco);white-space:nowrap;display:flex;user-select:none}
+.hero .gigante span{display:inline-block}
+.hero .arara{position:absolute;left:50%;bottom:-2vh;width:min(54vh,78vw);transform:translateX(-50%);z-index:2;filter:drop-shadow(0 30px 40px rgba(80,25,0,.35))}
+.hero .labs{position:absolute;z-index:3;right:calc(50% - min(40vw,520px));top:calc(15vh + clamp(90px,20vw,320px));font-family:var(--f-spray);font-size:clamp(56px,9vw,140px);color:var(--tinta);transform:rotate(-8deg);clip-path:inset(0 100% 0 0)}
+.hero .info{position:absolute;z-index:4;left:var(--gutter);bottom:7vh;max-width:420px;display:flex;flex-direction:column;gap:20px}
+.hero .info p{font-size:clamp(19px,1.6vw,23px);font-weight:600;line-height:1.35}
+.hero .rolar{position:absolute;z-index:4;right:var(--gutter);bottom:7vh;font-weight:800;font-size:13px;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.hero .rolar i{display:block;width:2px;height:44px;background:currentColor;transform-origin:top;animation:linha 1.6s ease-in-out infinite}
+@keyframes linha{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* fundo de seção inteira */
+.fundo{position:absolute;inset:0;overflow:hidden}
+.fundo img{width:100%;height:100%;object-fit:cover;max-width:none}
+
+/* 2. problema */
+.problema{position:relative;background:#0E0805;color:var(--branco);min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.problema .fundo img{object-position:75% 50%}
+.problema .fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,8,5,.92) 0%,rgba(14,8,5,.7) 38%,rgba(14,8,5,0) 70%)}
+.problema .wrap{position:relative;z-index:2;width:100%}
+.problema .bloco{max-width:560px}
+.problema h2{font-size:clamp(56px,8vw,128px)}
+.problema h2 span{color:var(--laranja)}
+.legenda{margin-top:18px;font-size:clamp(18px,1.6vw,22px);font-weight:500;max-width:460px;opacity:.9}
+.chip{display:inline-flex;gap:10px;align-items:baseline;margin-top:26px;background:var(--laranja);color:var(--tinta);padding:10px 16px;border-radius:14px;font-weight:700;font-size:16px}
+.chip b{font-family:var(--f-bloco);font-size:24px;font-weight:400;white-space:nowrap}
+
+/* 3. prova */
+.prova{background:var(--laranja);color:var(--tinta);padding-block:clamp(80px,12vw,150px);text-align:center;overflow:hidden}
+.prova .eyebrow{color:var(--branco)}
+.prova .tempo{font-size:clamp(110px,22vw,320px);line-height:1;color:var(--branco);margin-top:14px;padding-bottom:.08em;font-variant-numeric:tabular-nums}
+.prova .tempo small{font-size:.35em}
+.prova p{font-size:clamp(19px,1.7vw,24px);font-weight:600;max-width:820px;margin:22px auto 0}
+.prova p strong{white-space:nowrap}
+.prova p strong{background:var(--tinta);color:var(--branco);padding:0 .25em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* 4. ciência */
+.ciencia{position:relative;background:var(--papel);min-height:100svh;display:flex;align-items:center;overflow:hidden;padding-block:110px}
+.ciencia .fundo img{object-position:85% 50%}
+.ciencia .fundo::after{content:none}
+.ciencia .wrap{position:relative;z-index:2;width:100%}
+.ciencia .bloco{max-width:600px}
+.ciencia h2{font-size:clamp(60px,8vw,130px)}
+.ciencia h2 em{font-style:normal;color:var(--laranja)}
+.stats{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:28px 34px}
+.stat .num{font-size:clamp(54px,5.6vw,86px);color:var(--laranja);line-height:.9;white-space:nowrap}
+.stat p{margin-top:6px;font-weight:700;font-size:17px;line-height:1.3;max-width:230px}
+.fontes{margin-top:30px;font-size:12px;color:#8C8078}
+
+/* 5. investigação */
+.investiga{position:relative;background:#3B3935;color:var(--branco);min-height:100svh;overflow:hidden}
+.investiga .mural{position:absolute;inset:0;background:url(assets/img/04-mural-investigacao.webp) center/cover no-repeat;transform:scale(1.15)}
+.investiga .mural::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(25,22,20,.85) 0%,rgba(25,22,20,.55) 45%,rgba(25,22,20,.15) 100%)}
+.investiga .conteudo{position:relative;z-index:2;min-height:100svh;display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:30px;padding-block:90px}
+.investiga h2{font-size:clamp(54px,7.4vw,118px)}
+.investiga h2 span{color:var(--laranja)}
+.investiga .lead{margin-top:20px;font-size:clamp(18px,1.5vw,22px);max-width:480px;font-weight:500}
+.postits{position:relative;height:min(84vh,720px)}
+.postit{position:absolute;z-index:4;width:min(200px,42vw);background:var(--amarelo);color:var(--tinta);padding:20px 18px 22px;font-weight:700;font-size:16px;line-height:1.3;box-shadow:0 12px 24px rgba(0,0,0,.35)}
+.postit::before{content:"";position:absolute;top:-9px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:#E0261B;box-shadow:inset -3px -3px 0 rgba(0,0,0,.25)}
+.postit b{display:block;font-family:var(--f-bloco);font-weight:400;font-size:20px;margin-bottom:6px}
+.postit.l{background:#FF9A4D}
+.p1{left:0;top:2%;rotate:-5deg}.p2{right:0;top:6%;rotate:4deg}.p3{left:0;top:56%;rotate:3deg}.p4{right:0;top:60%;rotate:-4deg}
+.fios{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.fios path{fill:none;stroke:#E0261B;stroke-width:2.5}
+.detetive{position:absolute;z-index:3;left:0;right:0;margin-inline:auto;bottom:-4%;width:min(440px,32vw);filter:drop-shadow(0 24px 30px rgba(0,0,0,.5))}
+
+/* 6. genérico x vende (troca conforme rola) */
+.versus{position:relative;height:100svh;overflow:hidden;background:var(--laranja)}
+.versus .palco{position:absolute;inset:0}
+.versus .palco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.versus .vende{clip-path:inset(0 0 0 100%)}
+.versus .linha{position:absolute;top:0;bottom:0;left:100%;width:6px;margin-left:-3px;background:var(--branco);box-shadow:0 0 30px rgba(0,0,0,.35);z-index:2}
+.versus .cab{position:absolute;z-index:3;left:0;right:0;top:0;padding:92px var(--gutter) 0;display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.versus h2{font-size:clamp(36px,3.8vw,64px);color:var(--tinta);white-space:nowrap}
+.versus h2 br{display:none}
+.versus h2 span{color:var(--tinta)}
+.selo{position:relative;display:inline-grid;font-weight:800;font-size:17px}
+.selo span{grid-area:1/1;background:var(--tinta);color:var(--branco);padding:12px 22px;border-radius:999px;text-align:center}
+.selo .s2{background:#139A43;opacity:0}
+.versus .base{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:0 var(--gutter) 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.item{background:var(--branco);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;min-width:0;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.item .ic{flex:none;position:relative;width:30px;height:30px;border-radius:50%;background:var(--vermelho);color:var(--branco);font-weight:900;display:grid;place-items:center}
+.item .ic i{grid-area:1/1;font-style:normal}
+.item .t{display:grid;font-weight:800;font-size:15px;line-height:1.25}
+.item .t span{grid-area:1/1}
+.item .sim,.item .ic .sim{opacity:0}
+
+/* 7. como funciona: painéis empilhados */
+.passos{position:relative;background:var(--tinta)}
+.passos .titulo{background:var(--tinta);color:var(--branco);padding:clamp(80px,10vw,140px) 0 clamp(40px,5vw,60px)}
+.passos .titulo h2{font-size:clamp(56px,8vw,130px)}
+.passos .titulo h2 span{color:var(--laranja)}
+.passo{position:sticky;top:0;height:100svh;overflow:hidden;color:var(--branco)}
+.passo .palavra{position:absolute;left:var(--gutter);top:22%;font-size:clamp(90px,13vw,230px);white-space:nowrap;color:rgba(255,255,255,.95)}
+.passo .boneco{position:absolute;left:36%;right:0;margin-inline:auto;bottom:0;height:min(82vh,760px);width:auto;max-width:none;z-index:2;filter:drop-shadow(0 26px 34px rgba(0,0,0,.28))}
+.passo .texto{position:absolute;z-index:3;left:var(--gutter);bottom:8vh;max-width:360px;background:rgba(18,11,7,.86);color:var(--branco);border-radius:20px;padding:22px 24px;backdrop-filter:blur(6px)}
+.passo .texto .n{font-family:var(--f-spray);font-size:42px;color:var(--laranja);line-height:1}
+.passo .texto h3{margin:6px 0 6px;font-family:var(--f-bloco);font-weight:400;font-size:24px}
+.passo .texto p{font-size:16px;color:#E9DED6}
+@media (min-width:861px){.passo.amarelo .palavra{top:30%}.passo.laranja .palavra{top:36%;left:22%}}
+.passo.vermelho{background:var(--vermelho)}.passo.azul{background:var(--azul)}.passo.amarelo{background:var(--amarelo)}.passo.amarelo .palavra{color:var(--tinta)}.passo.laranja{background:var(--laranja)}
+
+/* 8. gente de verdade */
+.gente{background:var(--papel);padding-block:clamp(90px,12vw,160px)}
+.gente .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,90px);align-items:center}
+.gente .foto{border-radius:28px;overflow:hidden}
+.gente h2{font-size:clamp(54px,7vw,112px)}
+.gente h2 span{color:var(--laranja)}
+.gente .lead{margin-top:18px;font-size:clamp(18px,1.5vw,22px);color:var(--cinza);max-width:520px}
+.chat{margin-top:30px;background:#E9DFD3;border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:10px;max-width:520px}
+.msg{max-width:82%;padding:11px 15px;border-radius:16px;font-size:16px;line-height:1.35;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.msg.cli{align-self:flex-end;background:#D9FDD3;border-bottom-right-radius:4px}
+.msg.fr{align-self:flex-start;background:var(--branco);border-bottom-left-radius:4px}
+.msg small{display:block;font-size:11px;color:#8A8A8A;text-align:right;margin-top:3px}
+.digitando{align-self:flex-start;background:var(--branco);border-radius:16px;padding:14px 16px;display:flex;gap:5px}
+.digitando i{width:7px;height:7px;border-radius:50%;background:#A99C92;animation:pulo 1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}.digitando i:nth-child(3){animation-delay:.3s}
+@keyframes pulo{0%,60%,100%{transform:none}30%{transform:translateY(-5px)}}
+
+/* 9. dúvidas */
+.duvidas{background:var(--branco);padding-block:clamp(90px,12vw,150px)}
+.duvidas .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,90px)}
+.duvidas h2{font-size:clamp(56px,7vw,112px)}
+details{border-bottom:2px solid var(--tinta);padding:22px 0}
+details:first-of-type{border-top:2px solid var(--tinta)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-family:var(--f-bloco);font-size:clamp(20px,2vw,26px);line-height:1.2}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-texto);font-weight:900;font-size:30px;line-height:.8;color:var(--laranja);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+summary:focus-visible{outline:3px solid var(--laranja);outline-offset:4px}
+details p{margin-top:12px;color:var(--cinza);max-width:640px}
+
+/* 10. fechamento */
+.fim{position:relative;background:#000;color:var(--branco);min-height:100svh;overflow:hidden;display:flex;align-items:center}
+.fim .bora{position:absolute;right:-2vw;top:50%;translate:0 -50%;font-family:var(--f-spray);font-size:clamp(140px,26vw,420px);line-height:.8;color:var(--laranja);writing-mode:vertical-rl;rotate:180deg;opacity:.95}
+.fim .boneco{position:absolute;left:44%;right:0;margin-inline:auto;bottom:0;height:min(88vh,820px);width:auto;max-width:none;z-index:2;filter:drop-shadow(0 0 40px rgba(250,103,10,.35))}
+.fim .conteudo{position:relative;z-index:3;max-width:470px;display:flex;flex-direction:column;gap:22px}
+.fim h2{font-size:clamp(52px,6.4vw,100px)}
+.fim h2 span{color:var(--laranja)}
+.fim .rodape{position:absolute;z-index:3;left:0;right:0;bottom:0;padding:18px var(--gutter);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#BDB2AA}
+.fim .rodape a{color:var(--branco)}
+
+/* whatsapp flutuante no celular */
+.flutua{position:fixed;z-index:60;right:16px;bottom:16px;width:60px;height:60px;border-radius:50%;background:#25D366;display:none;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.flutua svg{width:32px;height:32px}
+
+@media (max-width:860px){
+  body{font-size:17px}
+  .topo .btn span{display:none}
+  .marca span{font-size:20px}
+  .hero .gigante{top:16vh;font-size:22vw}
+  .hero .arara{width:min(92vw,58vh)}
+  .hero .labs{right:6vw;top:calc(16vh + 24vw)}
+  .hero .info{bottom:4vh;right:var(--gutter);max-width:none}
+  .hero .info p{background:rgba(18,11,7,.82);padding:14px 16px;border-radius:16px}
+  .hero .rolar{display:none}
+  .investiga .conteudo,.gente .grid,.duvidas .grid{grid-template-columns:1fr}
+  .problema{align-items:flex-end;padding-block:110px 60px}
+  .problema .fundo img{object-position:78% 50%}
+  .problema .fundo::after{background:linear-gradient(0deg,rgba(14,8,5,.95) 0%,rgba(14,8,5,.75) 45%,rgba(14,8,5,.1) 75%)}
+  .ciencia{align-items:flex-start;padding-block:100px 0;flex-direction:column}
+  .ciencia .fundo{position:relative;inset:auto;width:100%;height:auto;order:2;margin-top:20px}
+  .ciencia .fundo img{height:auto;aspect-ratio:1/1;object-position:96% 50%}
+  .stats{gap:20px 18px}
+  .stat p{font-size:15px}
+  .postits{height:760px}
+  .postit{width:46%;padding:14px 12px 16px;font-size:14px}
+  .postit b{font-size:17px}
+  .p3{top:23%}.p4{top:25%}
+  .detetive{width:min(300px,70vw);bottom:0}
+  .versus .cab{padding:82px var(--gutter) 0;gap:12px}
+  .versus h2{font-size:40px;white-space:normal}
+  .versus h2 br{display:inline}
+  .versus .palco img{object-position:90% 50%}
+  .selo{font-size:15px}
+  .versus .base{grid-template-columns:1fr 1fr;gap:8px;padding-bottom:96px}
+  .item{padding:10px 12px;gap:8px}
+  .item .t{font-size:13px}
+  .item .ic{width:24px;height:24px;font-size:13px}
+  .passo .boneco{height:min(66vh,560px)}
+  .passo .texto{right:var(--gutter);bottom:4vh;max-width:none}
+  .fim{align-items:flex-start;padding-top:120px}
+  .fim .bora{display:none}
+  .fim h2{font-size:56px}
+  .fim .boneco{height:min(60vh,520px);left:60%}
+  .fim .bora{font-size:42vw;right:-6vw}
+  .flutua{display:grid}
+  .card{grid-template-columns:1fr}
+  .card .num{grid-row:auto;font-size:64px;margin-bottom:6px}
+  .passo .palavra{font-size:clamp(56px,15vw,120px);top:22%;left:0;right:0;text-align:center}
+  .passo .boneco{left:0}
+  .passo .boneco{height:min(52vh,460px);bottom:22vh}
+  .passo .texto{bottom:96px;padding:16px 18px}
+  .passo .texto .n{font-size:30px}
+  .passo .texto h3{font-size:20px}
+  .passo .texto p{font-size:15px}
+  .fim .boneco{height:min(56vh,480px);left:0;right:0;bottom:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero .labs{clip-path:none}
+  .versus .vende{clip-path:none}.versus .linha{display:none}.selo .s1,.item .nao{opacity:0}.selo .s2,.item .sim{opacity:1}.item .ic{background:#139A43}
+}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <a class="marca" href="#inicio" aria-label="Frattini Labs, voltar ao início"><img src="assets/img/arara-icone.webp" alt="" width="42" height="42"><span>Frattini <b>Labs</b></span></a>
+  <a class="btn wpp" href="#" data-wpp><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1a15 15 0 0 1-1.5-.6c-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span>Chamar no WhatsApp</span></a>
+</header>
+
+<main>
+<!-- 1. abertura -->
+<section class="hero" id="inicio" aria-label="Abertura">
+  <div class="gigante condensado" aria-hidden="true"><span>F</span><span>r</span><span>a</span><span>t</span><span>t</span><span>i</span><span>n</span><span>i</span></div>
+  <img class="arara" src="assets/img/01-abertura-recorte.webp" alt="A arara da Frattini Labs de óculos espelhados, braços cruzados, pisando em direção à câmera" width="683" height="1100" fetchpriority="high">
+  <div class="labs" aria-hidden="true">Labs</div>
+  <div class="info">
+    <h1 class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Frattini Labs: sites que fazem seu cliente comprar</h1>
+    <p>Sites que fazem o seu cliente ficar e comprar.</p>
+    <a class="btn" href="#" data-wpp><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1a15 15 0 0 1-1.5-.6c-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>Quero um site assim</a>
+  </div>
+  <div class="rolar" aria-hidden="true"><i></i>Role</div>
+</section>
+
+
+<!-- 2. problema -->
+<section class="problema" aria-label="O problema">
+  <div class="fundo" aria-hidden="true"><img src="assets/img/02-problema-fundo.webp" alt="" width="1920" height="1080" loading="lazy"></div>
+  <div class="wrap">
+    <div class="bloco">
+      <p class="eyebrow" style="color:var(--laranja)">Acontece todo dia</p>
+      <h2 class="condensado" style="margin-top:14px">Site lento <span>perde cliente</span></h2>
+      <p class="legenda">Ele te achou no Google, cansou de esperar e foi pro concorrente.</p>
+      <div class="chip"><b>4 em 10</b> desistem se o site demora mais de 3s</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. prova -->
+<section class="prova" aria-label="Velocidade deste site">
+  <div class="wrap">
+    <p class="eyebrow">A prova é esta página</p>
+    <div class="tempo condensado"><span id="tempo">0,0</span><small>s</small></div>
+    <p>Foi o tempo que este site levou pra abrir. <strong>O seu pode ser assim.</strong></p>
+  </div>
+</section>
+
+<!-- 4. ciência -->
+<section class="ciencia" aria-label="A ciência por trás">
+  <div class="fundo" aria-hidden="true"><img src="assets/img/03-ciencia-fundo.webp" alt="" width="1920" height="1080" loading="lazy"></div>
+  <div class="wrap">
+    <div class="bloco">
+      <h2 class="condensado">A ciência <em>por trás</em></h2>
+      <p class="legenda">Cada detalhe do seu site tem um porquê.</p>
+      <div class="stats">
+        <div class="stat"><div class="num condensado">0,05s</div><p>pra alguém julgar o seu site</p></div>
+        <div class="stat"><div class="num condensado">40%</div><p>saem se o site passa de 3 segundos</p></div>
+        <div class="stat"><div class="num condensado">73%</div><p>preferem chamar a empresa por mensagem</p></div>
+        <div class="stat"><div class="num condensado">96%</div><p>leem avaliações antes de comprar</p></div>
+      </div>
+      <p class="fontes">Fontes: Carleton University, Google/SOASTA, Reclame Aqui</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. investigação -->
+<section class="investiga" aria-label="Antes de desenhar, a gente investiga">
+  <div class="mural" aria-hidden="true"></div>
+  <div class="wrap conteudo">
+    <div>
+      <p class="eyebrow" style="color:var(--amarelo)">Antes de desenhar qualquer coisa</p>
+      <h2 class="condensado" style="margin-top:14px">A gente <span>investiga</span> o seu negócio</h2>
+      <p class="lead">A gente estuda o seu mercado como se o negócio fosse nosso.</p>
+    </div>
+    <div class="postits">
+      <svg class="fios" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M14 10 C 40 22, 60 22, 86 14"/><path d="M86 14 C 76 40, 30 50, 14 66"/><path d="M14 66 C 40 58, 62 64, 86 70"/><path d="M14 10 C 22 40, 70 50, 86 70"/>
+      </svg>
+      <div class="postit p1"><b>Seu nicho</b>O que o seu cliente valoriza</div>
+      <div class="postit l p2"><b>Concorrentes</b>Onde eles deixam o cliente na mão</div>
+      <div class="postit l p3"><b>O que buscam</b>O que o seu público digita no Google</div>
+      <div class="postit p4"><b>Confiança</b>O que faz alguém escolher você</div>
+      <img class="detetive" src="assets/img/05-detetive-sem-fundo.webp" alt="A arara vestida de detetive, olhando por uma lupa" width="542" height="900" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 6. genérico x vende -->
+<section class="versus" id="versus" aria-label="Site genérico ou site que vende">
+  <div class="palco" aria-hidden="true">
+    <img class="generico" src="assets/img/06-site-generico.webp" alt="" width="1920" height="1080" loading="lazy">
+    <img class="vende" src="assets/img/06-site-que-vende.webp" alt="" width="1920" height="1080" loading="lazy">
+    <div class="linha"></div>
+  </div>
+  <div class="cab">
+    <h2 class="condensado">Bonito é pouco.<br><span>Tem que vender.</span></h2>
+    <div class="selo" aria-live="polite"><span class="s1">Site genérico</span><span class="s2">Site que vende</span></div>
+  </div>
+  <div class="base">
+    <div class="item"><div class="ic"><i class="nao">✕</i><i class="sim">✓</i></div><div class="t"><span class="nao">Frase vaga</span><span class="sim">Diz o que você faz</span></div></div>
+    <div class="item"><div class="ic"><i class="nao">✕</i><i class="sim">✓</i></div><div class="t"><span class="nao">Contato escondido</span><span class="sim">WhatsApp à mão</span></div></div>
+    <div class="item"><div class="ic"><i class="nao">✕</i><i class="sim">✓</i></div><div class="t"><span class="nao">Demora pra abrir</span><span class="sim">Abre na hora</span></div></div>
+    <div class="item"><div class="ic"><i class="nao">✕</i><i class="sim">✓</i></div><div class="t"><span class="nao">Sem provas</span><span class="sim">Avaliações reais</span></div></div>
+  </div>
+</section>
+
+<!-- 7. como funciona -->
+<section class="passos" aria-label="Como funciona">
+  <div class="titulo"><div class="wrap"><p class="eyebrow" style="color:var(--laranja)">Do primeiro oi até o site no ar</p><h2 class="condensado" style="margin-top:12px">Como <span>funciona</span></h2></div></div>
+  <article class="passo vermelho">
+    <div class="palavra condensado" aria-hidden="true">Conversa</div>
+    <img class="boneco" src="assets/img/07-passo-conversa-recorte.webp" alt="" loading="lazy">
+    <div class="texto"><div class="n">01</div><h3>Conversa</h3><p>Você conta do seu negócio e do seu cliente.</p></div>
+  </article>
+  <article class="passo azul">
+    <div class="palavra condensado" aria-hidden="true">Investigação</div>
+    <img class="boneco" src="assets/img/08-passo-investigacao-recorte.webp" alt="" loading="lazy">
+    <div class="texto"><div class="n">02</div><h3>Investigação</h3><p>A gente estuda o seu mercado e os concorrentes.</p></div>
+  </article>
+  <article class="passo amarelo">
+    <div class="palavra condensado" aria-hidden="true">Criação</div>
+    <img class="boneco" src="assets/img/09-passo-criacao-recorte.webp" alt="" loading="lazy">
+    <div class="texto"><div class="n">03</div><h3>Criação</h3><p>Design com a sua cara, feito pra levar ao contato.</p></div>
+  </article>
+  <article class="passo laranja">
+    <div class="palavra condensado" aria-hidden="true">No ar</div>
+    <img class="boneco" src="assets/img/10-passo-lancamento-recorte.webp" alt="" loading="lazy">
+    <div class="texto"><div class="n">04</div><h3>Revisão e lançamento</h3><p>Você aprova e o site vai pro ar.</p></div>
+  </article>
+</section>
+
+<!-- 8. gente de verdade -->
+<section class="gente" aria-label="Atendimento de verdade">
+  <div class="wrap grid">
+    <div class="foto"><img src="assets/img/11-whatsapp.webp" alt="A arara mostrando um celular com uma conversa no WhatsApp" width="678" height="900" loading="lazy"></div>
+    <div>
+      <p class="eyebrow" style="color:var(--laranja)">Atendimento</p>
+      <h2 class="condensado" style="margin-top:12px">Aqui você não fala com <span>robô</span></h2>
+      <p class="lead">Você conversa direto com quem vai criar o seu site. Sem fila, sem formulário, sem resposta automática.</p>
+      <div class="chat" id="chat" aria-label="Exemplo de conversa">
+        <div class="msg cli">Oi! Tenho uma barbearia e quero um site 💈<small>10:02</small></div>
+        <div class="msg fr">Opa, bora! Me conta: quem é o seu cliente e o que faz ele escolher você?<small>10:02</small></div>
+        <div class="msg cli">Público jovem, que gosta de corte na régua e atendimento rápido.<small>10:04</small></div>
+        <div class="digitando" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="msg fr">Perfeito. Vou estudar as barbearias da sua região e te mando uma proposta 👊<small>10:05</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. dúvidas -->
+<section class="duvidas" aria-label="Dúvidas">
+  <div class="wrap grid">
+    <h2 class="condensado">Dúvidas</h2>
+    <div>
+      <details><summary>Quanto custa um site?</summary><p>Cada projeto é pensado pro seu negócio, então o valor depende do que você precisa. Manda uma mensagem no WhatsApp que a gente monta o seu orçamento.</p></details>
+      <details><summary>Vocês atendem a minha cidade?</summary><p>Sim. O atendimento é 100% online, pra qualquer lugar do Brasil.</p></details>
+      <details><summary>Posso alterar o site depois?</summary><p>Pode. Durante o projeto você acompanha e pede ajustes, e depois que o site vai pro ar a gente continua ajudando.</p></details>
+      <details><summary>Preciso já ter um domínio?</summary><p>Não precisa. Se você ainda não tem o endereço do site (tipo seunegocio.com.br), a gente te orienta a registrar.</p></details>
+      <details><summary>O site funciona bem no celular?</summary><p>Funciona. A maior parte dos seus clientes vai te achar pelo celular, então o site é pensado primeiro pra tela pequena.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. fechamento -->
+<section class="fim" aria-label="Fale com a gente">
+  <div class="bora" aria-hidden="true">Bora?</div>
+  <img class="boneco" src="assets/img/12-fechamento-recorte.webp" alt="A arara apontando para quem está vendo, chamando para conversar" loading="lazy">
+  <div class="wrap" style="width:100%">
+    <div class="conteudo">
+      <h2 class="condensado">Bora fazer o <span>seu site?</span></h2>
+      <p style="color:#D9CEC6">Resposta de gente de verdade.</p>
+      <a class="btn laranja" href="#" data-wpp style="align-self:flex-start"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1a15 15 0 0 1-1.5-.6c-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>Chamar no WhatsApp</a>
+    </div>
+  </div>
+  <div class="rodape"><span>© 2026 Frattini Labs · Sites para negócios de todo o Brasil</span><a href="https://instagram.com/frattinilabs" target="_blank" rel="noopener">@frattinilabs</a></div>
+</section>
+</main>
+
+<a class="flutua" href="#" data-wpp aria-label="Chamar no WhatsApp"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.7-.1a15 15 0 0 1-1.5-.6c-2.7-1.2-4.4-3.9-4.6-4.1-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg></a>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script>
+// WhatsApp com mensagem pronta
+const WPP="https://wa.me/5582988224653?text="+encodeURIComponent("Oi! Vim pelo site da Frattini Labs e quero conversar sobre um site pro meu negócio.");
+document.querySelectorAll("[data-wpp]").forEach(a=>{a.href=WPP;a.target="_blank";a.rel="noopener"});
+
+// tempo de carregamento real
+function mostraTempo(){
+  const nav=performance.getEntriesByType("navigation")[0];
+  let s=nav&&nav.loadEventEnd>0?nav.loadEventEnd/1000:performance.now()/1000;
+  s=Math.max(0.1,Math.round(s*10)/10);
+  window.__tempo=s; return s;
+}
+
+
+const reduz=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+window.addEventListener("load",()=>{
+  const total=mostraTempo();
+  const el=document.getElementById("tempo");
+  if(reduz||!window.gsap){el.textContent=total.toFixed(1).replace(".",",");return}
+
+  gsap.registerPlugin(ScrollTrigger);
+  const lenis=new Lenis({lerp:.1});
+  lenis.on("scroll",ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{const id=a.getAttribute("href");if(id.length>1){e.preventDefault();lenis.scrollTo(id)}}));
+
+  // abertura: entrada
+  const tl=gsap.timeline({defaults:{ease:"power4.out"}});
+  tl.from(".hero .gigante span",{yPercent:110,opacity:0,duration:1.1,stagger:.05})
+    .from(".hero .arara",{yPercent:30,scale:.85,opacity:0,duration:1.2},"-=.9")
+    .to(".hero .labs",{clipPath:"inset(0 0% 0 0)",duration:.9,ease:"steps(9)"},"-=.3")
+    .from(".hero .info>*",{y:30,opacity:0,duration:.8,stagger:.1},"-=.6")
+    .from(".topo",{y:-30,opacity:0,duration:.6},"-=.6");
+
+  // abertura: scroll (a arara vem pra câmera, o nome abre)
+  gsap.timeline({scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}})
+    .to(".hero .arara",{scale:1.35,yPercent:-6,ease:"none"},0)
+    .to(".hero .gigante span:nth-child(-n+4)",{xPercent:-40,ease:"none"},0)
+    .to(".hero .gigante span:nth-child(n+5)",{xPercent:40,ease:"none"},0)
+    .to(".hero .labs",{rotate:-14,y:-60,ease:"none"},0)
+    .to(".hero .info",{opacity:0,y:-40,ease:"none"},0);
+
+  // problema: fundo aproxima, texto entra
+  gsap.fromTo(".problema .fundo img",{scale:1.25},{scale:1,ease:"none",scrollTrigger:{trigger:".problema",start:"top bottom",end:"bottom top",scrub:true}});
+  gsap.from(".problema .bloco>*",{y:50,opacity:0,stagger:.12,duration:.9,ease:"power3.out",scrollTrigger:{trigger:".problema",start:"top 55%"}});
+
+  // prova: contador
+  const obj={v:0};
+  ScrollTrigger.create({trigger:".prova",start:"top 70%",once:true,onEnter:()=>gsap.to(obj,{v:total,duration:1.4,ease:"power2.out",onUpdate:()=>el.textContent=obj.v.toFixed(1).replace(".",",")})});
+  gsap.from(".prova .tempo",{scale:.6,opacity:0,ease:"back.out(1.6)",duration:1,scrollTrigger:{trigger:".prova",start:"top 70%"}});
+
+  // ciência: fundo e números
+  gsap.fromTo(".ciencia .fundo img",{scale:1.2},{scale:1,ease:"none",scrollTrigger:{trigger:".ciencia",start:"top bottom",end:"bottom top",scrub:true}});
+  gsap.from(".ciencia h2,.ciencia .legenda",{y:40,opacity:0,stagger:.1,duration:.8,scrollTrigger:{trigger:".ciencia",start:"top 60%"}});
+  gsap.from(".stat",{y:40,opacity:0,stagger:.12,duration:.7,ease:"power3.out",scrollTrigger:{trigger:".stats",start:"top 85%"}});
+
+  // investigação: mural, fios e post-its
+  gsap.to(".investiga .mural",{scale:1,yPercent:6,ease:"none",scrollTrigger:{trigger:".investiga",start:"top bottom",end:"bottom top",scrub:true}});
+  const fios=document.querySelectorAll(".fios path");
+  fios.forEach(p=>{const l=p.getTotalLength();p.style.strokeDasharray=l;p.style.strokeDashoffset=l});
+  const ti=gsap.timeline({scrollTrigger:{trigger:".investiga",start:"top 60%",end:"bottom 80%",scrub:1}});
+  ti.from(".postit",{scale:0,rotate:"+=25",opacity:0,stagger:.25,ease:"back.out(2)"})
+    .to(fios,{strokeDashoffset:0,stagger:.2,ease:"none"},"<.3")
+    .from(".detetive",{yPercent:40,opacity:0,ease:"power2.out"},"<");
+
+  // genérico x vende: a tela troca conforme rola
+  const tv=gsap.timeline({scrollTrigger:{trigger:".versus",start:"top top",end:"+=160%",pin:true,scrub:.6}});
+  tv.to({}, {duration:.25})
+    .to(".versus .vende",{clipPath:"inset(0 0 0 0%)",ease:"none",duration:1},"troca")
+    .to(".versus .linha",{left:"0%",ease:"none",duration:1},"troca")
+    .to(".selo .s2",{opacity:1,duration:.15},"troca+=.5")
+    .to(".item .nao",{opacity:0,duration:.15,stagger:.08},"troca+=.4")
+    .to(".item .sim",{opacity:1,duration:.15,stagger:.08},"troca+=.45")
+    .to(".item .ic",{backgroundColor:"#139A43",duration:.15,stagger:.08},"troca+=.45")
+    .to(".versus .linha",{opacity:0,duration:.1})
+    .to({}, {duration:.25});
+  gsap.from(".versus .item",{y:40,opacity:0,stagger:.08,duration:.6,scrollTrigger:{trigger:".versus",start:"top 60%"}});
+
+  // passos empilhados
+  gsap.utils.toArray(".passo").forEach(p=>{
+    gsap.from(p.querySelector(".palavra"),{xPercent:30,ease:"none",scrollTrigger:{trigger:p,start:"top bottom",end:"top top",scrub:true}});
+    gsap.from(p.querySelector(".boneco"),{yPercent:35,scale:.9,ease:"none",scrollTrigger:{trigger:p,start:"top bottom",end:"top top",scrub:true}});
+    gsap.from(p.querySelector(".texto"),{y:60,opacity:0,duration:.8,scrollTrigger:{trigger:p,start:"top 40%"}});
+  });
+
+  // chat aparecendo
+  const msgs=gsap.utils.toArray("#chat > *");
+  gsap.set(msgs,{opacity:0,y:20});
+  ScrollTrigger.create({trigger:"#chat",start:"top 80%",once:true,onEnter:()=>{
+    const t=gsap.timeline();
+    t.to(msgs[0],{opacity:1,y:0,duration:.4}).to(msgs[1],{opacity:1,y:0,duration:.4},"+=.6").to(msgs[2],{opacity:1,y:0,duration:.4},"+=.8")
+     .to(msgs[3],{opacity:1,y:0,duration:.3},"+=.5").to(msgs[3],{opacity:0,height:0,padding:0,duration:.2},"+=1.1").to(msgs[4],{opacity:1,y:0,duration:.4});
+  }});
+  gsap.from(".gente .foto img",{scale:1.2,ease:"none",scrollTrigger:{trigger:".gente",start:"top bottom",end:"bottom top",scrub:true}});
+
+  // fechamento
+  gsap.from(".fim .bora",{yPercent:40,opacity:0,ease:"none",scrollTrigger:{trigger:".fim",start:"top bottom",end:"top 20%",scrub:true}});
+  gsap.from(".fim .boneco",{yPercent:30,scale:.85,ease:"none",scrollTrigger:{trigger:".fim",start:"top bottom",end:"top top",scrub:true}});
+  gsap.from(".fim .conteudo>*",{y:40,opacity:0,stagger:.1,duration:.8,scrollTrigger:{trigger:".fim",start:"top 50%"}});
+});
+</script>
+</body>
+</html>
