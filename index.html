@@ -230,7 +230,7 @@ details p{margin-top:12px;color:var(--cinza);max-width:640px}
   .versus .cab{padding:82px var(--gutter) 0;gap:12px}
   .versus h2{font-size:40px;white-space:normal}
   .versus h2 br{display:inline}
-  .versus .palco img{object-position:90% 50%}
+  .versus .palco img{object-position:50% 50%}
   .selo{font-size:15px}
   .versus .base{grid-template-columns:1fr 1fr;gap:8px;padding-bottom:96px}
   .item{padding:10px 12px;gap:8px}
@@ -246,9 +246,9 @@ details p{margin-top:12px;color:var(--cinza);max-width:640px}
   .flutua{display:grid}
   .card{grid-template-columns:1fr}
   .card .num{grid-row:auto;font-size:64px;margin-bottom:6px}
-  .passo .palavra{font-size:clamp(56px,15vw,120px);top:22%;left:0;right:0;text-align:center}
+  .passo .palavra{font-size:clamp(56px,15vw,120px);top:max(88px,12svh);left:0;right:0;text-align:center}
   .passo .boneco{left:0}
-  .passo .boneco{height:min(52vh,460px);bottom:22vh}
+  .passo .boneco{height:min(50svh,440px);bottom:19svh}
   .passo .texto{bottom:96px;padding:16px 18px}
   .passo .texto .n{font-size:30px}
   .passo .texto h3{font-size:20px}
@@ -349,8 +349,8 @@ details p{margin-top:12px;color:var(--cinza);max-width:640px}
 <!-- 6. genérico x vende -->
 <section class="versus" id="versus" aria-label="Site genérico ou site que vende">
   <div class="palco" aria-hidden="true">
-    <img class="generico" src="assets/img/06-site-generico.webp" alt="" width="1920" height="1080" loading="lazy">
-    <img class="vende" src="assets/img/06-site-que-vende.webp" alt="" width="1920" height="1080" loading="lazy">
+    <picture><source media="(max-width:860px)" srcset="assets/img/06-site-generico-versao-celular.webp"><img class="generico" src="assets/img/06-site-generico.webp" alt="" width="1920" height="1080" loading="lazy"></picture>
+    <picture><source media="(max-width:860px)" srcset="assets/img/06-site-que-vende-versao-celular.webp"><img class="vende" src="assets/img/06-site-que-vende.webp" alt="" width="1920" height="1080" loading="lazy"></picture>
     <div class="linha"></div>
   </div>
   <div class="cab">
