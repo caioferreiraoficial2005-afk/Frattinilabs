@@ -208,8 +208,7 @@ details p{margin-top:12px;color:var(--cinza);max-width:640px}
   .topo .btn span{display:none}
   .marca span{font-size:20px}
   .hero .gigante{top:16vh;font-size:22vw}
-  /* a cabeça fica sempre abaixo do "Labs", mesmo em telas baixas (navegador do Instagram) */
-  .hero .arara{width:min(92vw,58vh,calc((86vh - 24vw - 60px) / 1.61))}
+  .hero .arara{width:min(92vw,58vh)}
   .hero .labs{right:6vw;top:calc(16vh + 24vw)}
   .hero .info{bottom:4vh;right:var(--gutter);max-width:none}
   .hero .info p{background:rgba(18,11,7,.82);padding:14px 16px;border-radius:16px}
@@ -461,6 +460,18 @@ function mostraTempo(){
 
 
 const reduz=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// abertura no celular: em telas baixas (ex.: navegador do Instagram) o "Labs" cairia
+// no rosto da arara; nesse caso ele desce pro ombro, logo abaixo do bico
+function ajustaLabs(){
+  const l=document.querySelector(".hero .labs"),a=document.querySelector(".hero .arara");
+  l.style.top="";
+  if(!matchMedia("(max-width:860px)").matches)return;
+  const rosto=a.offsetTop+a.offsetHeight*.08;
+  if(l.offsetTop+l.offsetHeight*.8>rosto)l.style.top=(a.offsetTop+a.offsetHeight*.21)+"px";
+}
+ajustaLabs();
+window.addEventListener("resize",ajustaLabs);window.addEventListener("load",ajustaLabs);
 
 window.addEventListener("load",()=>{
   const total=mostraTempo();
